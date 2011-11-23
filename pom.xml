@@ -15,6 +15,11 @@
         <javaxpersistence.version>2.0.2</javaxpersistence.version>
         <eclipselink.version>2.2.0</eclipselink.version>
 
+        <!-- Properties Default Resources -->
+        <jdbc.default.url>jdbc:mysql://127.0.0.1:3306/svnpad</jdbc.default.url>
+        <jdbc.default.user>svnpad</jdbc.default.user>
+        <jdbc.default.password></jdbc.default.password>
+
         <!-- Application Settings -->
 
     </properties>
@@ -147,5 +152,15 @@
     </dependencies>
     <build>
         <finalName>SvnPad</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 </project>
