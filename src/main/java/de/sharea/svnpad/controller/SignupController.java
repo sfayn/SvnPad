@@ -2,6 +2,7 @@ package de.sharea.svnpad.controller;
 
 import de.sharea.svnpad.controller.beans.UserDataBean;
 import de.sharea.svnpad.dao.UserDao;
+import de.sharea.svnpad.dao.entities.Group;
 import de.sharea.svnpad.dao.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,9 @@ import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Patrick Trautmann
@@ -39,12 +43,20 @@ public class SignUpController {
 
     public String signUpNewUser() {
 
+        //Fix
         User newUser = new User();
 
         newUser.setUsername(userBean.getUsername());
         newUser.setEmail(userBean.getEmail());
         newUser.setPrename(userBean.getPreName());
         newUser.setLastname(userBean.getLastName());
+
+        List<Group> groups = new ArrayList<Group>();
+        Group userGroup = new Group();
+        userGroup.setName("USER");
+
+        groups.add(userGroup);
+        newUser.setGroups(groups);
 
         PasswordEncoder encoder = new Md5PasswordEncoder();
         String hashedPass = encoder.encodePassword(userBean.getPassword(), null);
