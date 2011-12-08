@@ -4,12 +4,13 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
 <h:body>
     <div class="sidebar">
         <div class="well">
-            <h:panelGroup>
+            <h:panelGroup rendered="#{sec:isAuthenticated()}">
                 <h5>User</h5>
                 <ul>
                     <li><a href="#">Dashboard</a></li>
@@ -17,7 +18,7 @@
                     <li><a href="#">Einstellungen</a></li>
                 </ul>
             </h:panelGroup>
-            <h:panelGroup>
+            <h:panelGroup rendered="#{sec:isAuthenticated()}">
                 <h5>Projekte</h5>
                 <ul>
                     <li><a href="#">Neues Projekt</a></li>
