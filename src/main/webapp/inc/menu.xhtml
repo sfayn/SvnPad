@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <div id="topbar" class="topbar">
+        <div class="topbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="#">SVNPad</a>
+                <ul class="nav">
+                    <li class="active"><a href="#">Dashboard</a></li>
+                    <li><a href="#">Projekte</a></li>
+                </ul>
+                <h:form class="pull-left" action="">
+                    <h:inputText class="span6" type="text" placeholder="Suche nach Projekten, Benutzern oder Dateien"/>
+                </h:form>
+                <h:panelGroup rendered="#{userSession.username != null}">
+                    <ul class="nav secondary-nav">
+                        <li class="dropdown" data-dropdown="dropdown">
+                            <a href="#" class="dropdown-toggle">#{userSession.username}</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Meine Favoriten</a></li>
+                                <li><a href="#">Einstellungen</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{userSession.username == null}">
+                    <h:form id="loginForm" class="pull-right">
+                        <h:inputText id="username" class="input-small" placeholder="Username"/>
+                        <h:inputText id="password" class="input-small" placeholder="Password"/>
+                        <h:commandLink styleClass="btn primary" value="Login"/>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>

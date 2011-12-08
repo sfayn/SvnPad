@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE composition
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags"
+                template="inc/template.xhtml">
+
+    <ui:define name="content">
+
+        <h:panelGroup>
+            <div class="hero-unit">
+                <h1>Willkommen</h1>
+
+                <h:panelGroup rendered="#{sec:isAuthenticated()}">
+                    <p>BLablablabla!!!!</p>
+                </h:panelGroup>
+
+                <p>Lernen Sie SVNPad kennen und nehmen sie an der Interaktiven Tour teil!</p>
+
+                <div class="span7">
+                    <div class="row">
+                        <div class="span3">
+                            <a class="btn primary large">Tutorial starten &raquo;</a>
+                        </div>
+                        <div class="span4">
+                            <a class="btn default large">Tutorial überspringen &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    <h2>Repositories</h2>
+
+                    <p>Gelangen Sie hier einfach zur Repository &Uuml;bersichtsseite, um einen &Uuml;berblick &uuml;ber alle Ihnen zug&auml;nglichen Repositories zu erhalten.</p>
+
+                    <p><a class="btn" href="#">Repositories &raquo;</a></p>
+                </div>
+                <div class="span5">
+                    <h2>Changelog</h2>
+
+                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+
+                    <p><a class="btn" href="#">Changelog &raquo;</a></p>
+                </div>
+                <div class="span5">
+                    <h2>Einstellungen</h2>
+
+                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+
+                    <p><a class="btn" href="#">Einstellungen &raquo;</a></p>
+                </div>
+            </div>
+
+        </h:panelGroup>
+
+    </ui:define>
+
+</ui:composition>

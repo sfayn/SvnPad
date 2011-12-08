@@ -52,17 +52,16 @@
             </snapshots>
         </repository>
 
+        <repository>
+            <id>Spring Tags</id>
+            <url>http://spring-security-facelets-taglib.googlecode.com/svn/repo/</url>
+            <layout>default</layout>
+        </repository>
+
     </repositories>
 
     <!-- Dependencies -->
     <dependencies>
-
-        <!-- String Template Lib -->
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>stringtemplate</artifactId>
-            <version>4.0.2</version>
-        </dependency>
 
         <!-- JSF 2.0 and Primefaces -->
         <dependency>
@@ -74,6 +73,12 @@
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
             <version>2.0.4-b09</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
 
         <dependency>
@@ -99,10 +104,39 @@
             <version>${spring.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>el-api</artifactId>
+            <version>2.2.1-b04</version>
+            <scope>provided</scope>
+        </dependency>
+
+
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
 
         <!-- MySQL JDBC Connector -->

@@ -4,7 +4,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
        http://www.springframework.org/schema/context
@@ -12,7 +12,7 @@
        http://www.springframework.org/schema/tx
        http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
        http://www.springframework.org/schema/aop
-       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd">
 
     <!-- bean post-processor for JPA annotations -->
     <context:annotation-config/>
@@ -21,7 +21,7 @@
 
     <bean id="myEmf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="myPersistenceUnit"/>
-        <property name="persistenceXmlLocation" value="classpath:persistence.xml"/>
+        <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
         <property name="jpaDialect">
             <bean class="org.springframework.orm.jpa.vendor.EclipseLinkJpaDialect"/>
         </property>
@@ -40,6 +40,21 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
     <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 
+    <jpa:repositories base-package="de.sharea.svnpad.dao"/>
     <context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!-- Beans -->
+    <bean id="userBean" class="de.sharea.svnpad.controller.beans.UserDataBean" scope="session"/>
+
+    <!-- JSF Controller -->
+    <bean id="welcomeController" class="de.sharea.svnpad.controller.WelcomeController" scope="session">
+        <property name="userBean" ref="userBean"/>
+    </bean>
+
+    <bean id="signUpController" class="de.sharea.svnpad.controller.SignUpController" scope="request">
+        <property name="userBean" ref="userBean"/>
+    </bean>
+
+    <bean id="userSession" class="de.sharea.svnpad.controller.UserSession" scope="session"/>
 
 </beans>

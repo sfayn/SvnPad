@@ -4,6 +4,12 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
     <persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <class>de.sharea.svnpad.dao.entities.Repository</class>
+        <class>de.sharea.svnpad.dao.entities.User</class>
+        <class>de.sharea.svnpad.dao.entities.Commits</class>
+        <class>de.sharea.svnpad.dao.entities.Review</class>
+        <class>de.sharea.svnpad.dao.entities.Group</class>
+        <class>de.sharea.svnpad.dao.entities.Comment</class>
         <properties>
             <property name="eclipselink.target-database"
                       value="org.eclipse.persistence.platform.database.MySQLPlatform"/>
@@ -16,7 +22,7 @@
             <property name="eclipselink.jdbc.write-connections.min" value="1"/>
             <property name="eclipselink.weaving" value="static"/>
             <property name="eclipselink.weaving.internal" value="false"/>
-            <property name="eclipselink.ddl-generation" value="create-drop"/>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
             <property name="eclipselink.logging.level" value="INFO"/>
             <property name="eclipselink.logging.thread" value="false"/>
             <property name="eclipselink.logging.session" value="false"/>

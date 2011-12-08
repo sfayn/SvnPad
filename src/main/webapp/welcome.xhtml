@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by Patrick Trautmann
+  
+  Contact: patrick.trautmann@gmail.com
+  Date: 29.11.11
+  Time: 20:17
+-->
+<!DOCTYPE composition
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+                template="inc/template.xhtml">
+
+    <ui:define name="content">
+
+        <div class="span-two-thirds">
+            <div class="row">
+
+                <div class="span-two-thirds">
+                    <h1>Willkommen</h1>
+
+                    <p>Du scheinst hier neu zu sein. Schaue dich doch ein wenig um, oder registriere dich.</p>
+                </div>
+
+            </div>
+            <hr/>
+            <div class="row">
+
+                <div class="span15">
+
+                    <div class="row">
+                        <div class="span7">
+                            <h2>Login</h2>
+                        </div>
+                        <div class="span8">
+                            <h2>Registrieren</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="span7">
+                            <h:form prependId="false" styleClass="form-stacked" id="loginMainForm">
+                                <!--Login Box-->
+                                <div class="row">
+                                    <div class="span8">
+                                        <p>Gebe deine Benutzerdaten an, um dich bei SVNPad anzumelden</p>
+                                    </div>
+                                </div>
+                                <div class="row span5">
+                                    <label>Benutzername</label>
+                                    <h:inputText styleClass="span5"/>
+                                </div>
+                                <div class="row span5">
+                                    <label>Passwort</label>
+                                    <h:inputSecret styleClass="span5"/>
+                                </div>
+                                <div class="row span5">
+                                    <br/>
+                                    <h:commandLink styleClass="btn primary" value="Login"/>
+                                </div>
+
+                            </h:form>
+                        </div>
+                        <div class="span8">
+                            <h:form id="registerFormFeedback">
+                                <h:messages showSummary="false" errorStyle="error" showDetail="true"/>
+                            </h:form>
+                            <h:form prependId="false" id="registerForm" styleClass="form-stacked">
+                                <!--Signup Box-->
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="span8">
+                                            <p>Gebe die nötigen Daten ein und drücke auf Registrieren, um dich bei SVNPad anzumelden</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h:panelGroup id="registerUsernameRegion"
+                                                      styleClass="span8 clearfix #{welcomeController.usernameFieldStyleClass}">
+                                            <label>Benutzername</label>
+
+                                            <div class="input">
+                                                <h:inputText id="registerUsername"
+                                                             styleClass="span4 #{welcomeController.usernameFieldStyleClass}"
+                                                             value="#{userBean.username}">
+                                                    <p:ajax event="change"
+                                                            listener="#{welcomeController.registerUsernameValueChangeEvent}"
+                                                            update="registerUsernameRegion"/>
+                                                </h:inputText>
+                                                <span class="help-inline">Wähle einen freien Benutzernamen</span>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span4">
+                                            <label>Vorname</label>
+                                            <h:inputText styleClass="span4" placeholder="Max"
+                                                         value="#{userBean.preName}" required="true"
+                                                         requiredMessage="Bitte geben Sie ihren Vornamen ein"/>
+                                        </div>
+                                        <div class="span4">
+                                            <label>Nachname</label>
+                                            <h:inputText styleClass="span4" placeholder="Mustermann"
+                                                         value="#{userBean.lastName}" required="true"
+                                                         requiredMessage="Bitte geben Sie ihren Nachnamen ein"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span5">
+                                            <span class="help-inline">Geben Sie ihren Vor- und Nachnamen an</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <h:panelGroup id="registerEmailRegion"
+                                                      styleClass="span8 clearfix #{welcomeController.emailFieldStyleClass}">
+                                            <label>Email Adresse</label>
+
+                                            <div class="input">
+                                                <h:inputText styleClass="span4" placeholder="z.B. max@mustermann.de"
+                                                             value="#{userBean.email}" required="true"
+                                                             requiredMessage="Bitte geben Sie eine eMail Adresse an">
+                                                    <p:ajax event="change" update="registerEmailRegion"
+                                                            listener="#{welcomeController.registerEmailValueChangeEvent}"/>
+                                                </h:inputText>
+                                                <span class="help-inline">Geben Sie ihre eMail Adresse an</span>
+                                            </div>
+                                        </h:panelGroup>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span4">
+                                            <label>Passwort</label>
+                                            <p:password id="Passwort" value="#{userBean.password}" feedback="false"
+                                                        match="Wiederholung" styleClass="span4" required="true"/>
+                                        </div>
+                                        <div class="span4">
+                                            <label>Passwort wiederholen</label>
+                                            <p:password id="Wiederholung" value="#{userBean.password}" feedback="false"
+                                                        styleClass="span4" required="true"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="span4">
+                                            <br/>
+                                            <p:commandLink styleClass="btn primary"
+                                                           action="#{signUpController.signUpNewUser}"
+                                                           update=":registerFormFeedback"
+                                                           value="Registrieren"/>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </h:form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="span-one-third">
+
+                </div>
+
+            </div>
+        </div>
+
+    </ui:define>
+
+
+</ui:composition>
