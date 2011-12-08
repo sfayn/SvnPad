@@ -97,7 +97,7 @@ public class User implements UserDetails {
         this.activated = activated;
     }
 
-    @ManyToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Group> groups;
 
     public List<Group> getGroups() {

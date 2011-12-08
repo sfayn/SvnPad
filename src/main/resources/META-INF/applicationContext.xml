@@ -45,10 +45,16 @@
 
     <!-- Beans -->
     <bean id="userBean" class="de.sharea.svnpad.controller.beans.UserDataBean" scope="session"/>
+    <bean id="springSecurityUser" class="org.springframework.security.taglibs.facelets.SpringSecurityELLibrary"
+          scope="request" factory-method="getUserDetails"/>
 
     <!-- JSF Controller -->
     <bean id="welcomeController" class="de.sharea.svnpad.controller.WelcomeController" scope="session">
         <property name="userBean" ref="userBean"/>
+    </bean>
+
+    <bean id="userSettingsController" class="de.sharea.svnpad.controller.UserSettingsController" scope="request">
+        <property name="userEntity" ref="springSecurityUser"/>
     </bean>
 
     <bean id="signUpController" class="de.sharea.svnpad.controller.SignUpController" scope="request">

@@ -34,17 +34,6 @@ public class Repository {
         this.url = url;
     }
 
-    @OneToOne
-    private Group group;
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
     @Basic
     private Boolean publicRepository;
 

@@ -7,7 +7,13 @@
                          http://www.springframework.org/schema/security
                          http://www.springframework.org/schema/security/spring-security-3.0.xsd">
 
-    <global-method-security secured-annotations="enabled" jsr250-annotations="enabled"/>
+    <global-method-security secured-annotations="enabled" pre-post-annotations="enabled" jsr250-annotations="enabled">
+        <expression-handler ref="expressionHandler"/>
+    </global-method-security>
+
+    <beans:bean id="expressionHandler"
+                class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"/>
+
 
     <!-- Automatically receives AuthenticationEvent messages -->
     <beans:bean id="loggerListener" class="org.springframework.security.authentication.event.LoggerListener"/>
@@ -15,12 +21,21 @@
     <!-- User Service Implementations -->
     <beans:bean id="databaseUserService" class="de.sharea.svnpad.services.login.DatabaseUserService"/>
 
+    <!-- Decision Maker -->
+    <beans:bean id="authenticationVoter" class="org.springframework.security.access.vote.AffirmativeBased">
+        <beans:property name="decisionVoters">
+            <beans:list>
+                <beans:bean class="org.springframework.security.web.access.expression.WebExpressionVoter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
     <!-- use-expressions="true"  -->
 
-    <http auto-config="true" access-denied-page="/welcome.xhtml">
+    <http auto-config="true" access-denied-page="/welcome.xhtml" use-expressions="true">
 
         <intercept-url pattern="/**" filters="none"/>
-        <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
+        <intercept-url pattern="/user/**" access="hasRole('USER')"/>
 
         <form-login login-page="/welcome.xhtml"/>
 

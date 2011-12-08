@@ -1,0 +1,83 @@
+<!--
+  Created by Patrick Trautmann
+  
+  Contact: patrick.trautmann@gmail.com
+  Date: 08.12.11
+  Time: 20:52
+-->
+<!DOCTYPE composition
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="../inc/template.xhtml">
+
+    <ui:define name="title">User Settings</ui:define>
+
+    <ui:define name="content">
+
+        <div class="span15">
+            <div class="row">
+                <div class="span8">
+                    <h2>Einstellungen</h2>
+
+                    <p>Hier können Sie Änderungen an Ihrem Benutzerkonto vornehmen</p>
+                </div>
+            </div>
+            <hr/>
+            <h:form id="userSettingsForm" styleClass="form-stacked" prependId="false">
+                <p:messages showDetail="true" showSummary="true"/>
+
+                <div class="span8">
+                    <h3>Benutzerdaten</h3>
+
+                    <div class="row clearfix">
+                        <div class="span4">
+                            <p>Username</p>
+                        </div>
+                        <div class="span4">
+                            <h:inputText styleClass="span4" value="#{userSettingsController.userEntity.username}"
+                                         disabled="true"/>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="span4">
+                            <p>Email-Adresse</p>
+                        </div>
+                        <div class="span4">
+                            <h:inputText styleClass="span4" value="#{userSettingsController.userEntity.email}"/>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="span4">
+                            <p>Vorname</p>
+                        </div>
+                        <div class="span4">
+                            <h:inputText styleClass="span4" value="#{userSettingsController.userEntity.prename}"/>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="span4">
+                            <p>Nachname</p>
+                        </div>
+                        <div class="span4">
+                            <h:inputText styleClass="span4" value="#{userSettingsController.userEntity.lastname}"/>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row clearfix">
+                        <div class="span8">
+                            <p:commandButton value="Speichern" styleClass="btn primary span3" update=":userSettingsForm"
+                                             action="#{userSettingsController.changeUserData}"/>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+
+        </div>
+
+    </ui:define>
+
+</ui:composition>

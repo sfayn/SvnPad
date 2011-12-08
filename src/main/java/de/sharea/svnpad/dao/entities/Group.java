@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "Groups")
 public class Group implements GrantedAuthority {
     @GeneratedValue
     @Id
@@ -30,21 +31,13 @@ public class Group implements GrantedAuthority {
         this.name = name;
     }
 
-    @ManyToMany
-    private List<User> users;
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
     //Spring Security Implementation
 
     @Override
     public String getAuthority() {
+        if (name.equals("USER")) {
+            return "USER";
+        }
         return id + ":" + name;
     }
 }
