@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
+import de.sharea.svnpad.dao.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -177,5 +178,26 @@ public class SpringSecurityELLibrary {
     }
 
     public SpringSecurityELLibrary() {
+    }
+
+    public static String getUsername() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+
+        return authentication.getName();
+    }
+
+    public static User getUserDetails() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+
+        return (User) authentication.getDetails();
+
     }
 }

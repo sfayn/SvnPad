@@ -4,7 +4,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
 <h:body>
     <div id="topbar" class="topbar">
@@ -18,10 +19,10 @@
                 <h:form class="pull-left" action="">
                     <h:inputText class="span6" type="text" placeholder="Suche nach Projekten, Benutzern oder Dateien"/>
                 </h:form>
-                <h:panelGroup rendered="#{userSession.username != null}">
+                <h:panelGroup rendered="#{sec:isAuthenticated() and sec:getUsername() != null}">
                     <ul class="nav secondary-nav">
                         <li class="dropdown" data-dropdown="dropdown">
-                            <a href="#" class="dropdown-toggle">#{userSession.username}</a>
+                            <a href="#" class="dropdown-toggle">#{sec:getUsername()}</a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">Meine Favoriten</a></li>
                                 <li><a href="#">Einstellungen</a></li>
@@ -31,7 +32,7 @@
                         </li>
                     </ul>
                 </h:panelGroup>
-                <h:panelGroup rendered="#{userSession.username == null}">
+                <h:panelGroup rendered="#{!sec:isAuthenticated()}">
                     <h:form id="loginForm" class="pull-right">
                         <h:inputText id="username" class="input-small" placeholder="Username"/>
                         <h:inputText id="password" class="input-small" placeholder="Password"/>

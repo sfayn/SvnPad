@@ -35,6 +35,18 @@
         <function-signature>boolean isAnonymous()</function-signature>
     </function>
 
+    <function>
+        <function-name>getUsername</function-name>
+        <function-class>org.springframework.security.taglibs.facelets.SpringSecurityELLibrary</function-class>
+        <function-signature>java.lang.String getUsername()</function-signature>
+    </function>
+
+    <function>
+        <function-name>getUserDetails</function-name>
+        <function-class>org.springframework.security.taglibs.facelets.SpringSecurityELLibrary</function-class>
+        <function-signature>de.sharea.svnpad.dao.entities.User getUserDetails()</function-signature>
+    </function>
+
 
     <tag>
         <tag-name>ifAnyGranted</tag-name>
