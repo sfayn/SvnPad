@@ -17,12 +17,13 @@
 
     <!-- use-expressions="true"  -->
 
-    <http auto-config='true'>
+    <http auto-config="true" access-denied-page="/welcome.xhtml">
 
         <intercept-url pattern="/**" filters="none"/>
         <intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
 
-        <http-basic/>
+        <form-login login-page="/welcome.xhtml"/>
+
     </http>
 
     <!-- Database User Authentication -->
